@@ -1,0 +1,38 @@
+﻿@using CarDealerApp.Data;
+@model List<Car>
+
+<h1>Car List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Licence Plate</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Color</th>
+            <th>Year</th>
+            <th>Owner</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @foreach(var car in Model)
+            {
+                <td>@car.LicencePlate</td>
+                <td>@car.Brand</td>
+                <td>@car.Model</td>
+                <td>@car.Color</td>
+                <td>@car.DateTime.Year</td>
+                if (!string.IsNullOrEmpty(car.Owner))
+                {
+                    <td>@car.Owner</td>
+                }
+            }
+
+        </tr>
+    </tbody>
+
+
+</table>
+
+
