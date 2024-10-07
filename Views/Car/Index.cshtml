@@ -1,10 +1,19 @@
 ﻿@using CarDealerApp.Data;
-@model List<Car>
+@model List<Car> 
 
 
 <div>
+  
     <h1>Car List</h1>
-    <a asp-controller="Car" asp-action="Create"  class="btn-primary">New Car</a>
+    <a asp-controller="Car" asp-action="Create"  class=" btn btn-primary">New Car</a>
+    <div>
+        <form method="get" asp-controller="Car" asp-action="Search">
+            <input type="text" name="plate" placeholder="Enter Licence Plate" />
+            <button type="submit">Search</button>
+        </form>
+        
+    </div>
+    
 </div>
 
 <table class="table">
@@ -33,9 +42,9 @@
             }else{
                 <td>No Owner</td>
             }
-            <td><a asp-controller="Car" asp-action="Edit" asp-route-id="@car.CarId">Edit</a></td>
+                <td><a asp-controller="Car" asp-action="Edit" asp-route-id="@car.CarId" class="btn btn-primary">Edit</a></td>
 
-            <td><a href="javascript:void(0)" onclick="confirmDelete('@Url.Action("Delete", "Car", new {id = car.CarId})')">Delete</a></td>
+            <td><a onclick="confirmDelete('@Url.Action("Delete", "Car", new {id = car.CarId})')" class="btn btn-primary">Delete</a></td>
                 
         </tr>
         }
@@ -43,30 +52,10 @@
 
 </table>
 
-<script>
-    function confirmDelete(url) {
-        var confirmed = confirm("Are you sure you want to delete this?");
-        if (confirmed) {
-            fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'X-CSRF-TOKEN': '@Html.AntiForgeryToken()' 
-                }
-            }
-            ).then(response => {
-                if (response.ok) {
-                    window.location.reload(); // Reload page after deleting
-                } else {
-                    alert('Error on delete');
-                }
-            }).catch(error => {
-                console.error('Error:', error);
-                alert('Error in request');
-            });
-        }
-    }
-</script>
+@section Scripts{
+    <script src="/js/Confirm.js"></script>
+}
+
 
 
 

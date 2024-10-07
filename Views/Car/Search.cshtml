@@ -1,0 +1,33 @@
+﻿@model Car
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Licence Plate</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Color</th>
+            <th>Year</th>
+            <th>Owner</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>@Model.LicencePlate</td>
+            <td>@Model.Brand</td>
+            <td>@Model.Model</td>
+            <td>@Model.Color</td>
+            <td>@Model.DateTime.Year</td>
+            <td>@Model.Owner</td>
+            <a asp-controller="Car" asp-action="Edit" asp-route-id="@Model.CarId" class="btn btn-primary">Edit</a>
+            <a onclick="confirmDelete('@Url.Action("Delete","Car",new{id = Model.CarId})')" class="btn btn-primary">Delete</a>
+        </tr>
+    </tbody>
+</table>
+
+<a asp-controller="Car" asp-action="Index" class="btn btn-secondary">Go Back</a>
+
+@section Scripts{
+    <script src="~/js/Confirm.js"></script>
+}

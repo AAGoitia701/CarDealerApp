@@ -78,7 +78,7 @@ namespace CarDealerApp.Controllers
         }
         */
         [HttpPost, ActionName("Delete")]
-        public IActionResult Delete(int? id)
+        public IActionResult Delete(int id)
         {
             Car car = _context.Cars.Where(r => r.CarId == id).FirstOrDefault();
             if (car == null)
@@ -89,6 +89,33 @@ namespace CarDealerApp.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Search(string plate)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(plate))
+                {
+                    return View("NotFound");
+                }
+                Car car = _context.Cars.Where(r => r.LicencePlate == plate).FirstOrDefault();
+
+                if(car == null)
+                {
+                    return View("NotFound");
+                }           
+
+                return View(car);   
+
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine(err.Message);
+                return NoContent();
+            }
+            
         }
     }
 }
