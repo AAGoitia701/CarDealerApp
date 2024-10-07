@@ -1,0 +1,39 @@
+﻿@model Car
+<h2>Edit Car</h2>
+<form method="post">
+
+    <div>
+        <label asp-for="LicencePlate"></label>
+        <input asp-for="LicencePlate" class="form-control" readonly/>
+        <span asp-validation-for="LicencePlate" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Brand"></label>
+        <input asp-for="Brand" class="form-control" />
+        <span asp-validation-for="Brand" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Model"></label>
+        <input asp-for="Model" class="form-control" />
+        <span asp-validation-for="Model" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Color"></label>
+        <input asp-for="Color" class="form-control" />
+        <span asp-validation-for="Color" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="DateTime"></label>
+        <input asp-for="DateTime" class="form-control" />
+        <span asp-validation-for="DateTime" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Owner"></label>
+        <input asp-for="Owner" class="form-control" />
+        <span asp-validation-for="Owner" class="text-danger"></span>
+    </div>
+    
+    <button type="submit" class="btn-primary">Save</button>
+
+    <button asp-controller="Car" asp-action="Index">Go Back</button>
+</form>
