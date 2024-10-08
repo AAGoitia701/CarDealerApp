@@ -1,0 +1,30 @@
+﻿@model List<Owner>
+
+<h1>Owner List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>CardId</th>
+            <th>FullName</th>
+            <th>DateBirth</th>
+            <th>PhoneNumber</th>
+            <th>PostalCode</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var owner in Model)
+        {
+        <tr>
+                <td>@owner.CardId</td>
+                <td>@owner.FullName</td>
+                <td>@owner.DateBirth</td>
+                <td>@owner.PhoneNumber</td>
+                <td>@owner.PostalCode</td>
+                <td>@owner.Email</td>
+
+        </tr>
+        }
+    </tbody>
+</table>
