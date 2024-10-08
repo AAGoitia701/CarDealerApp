@@ -12,5 +12,6 @@ namespace CarDealerApp.Models
         }
 
         public DbSet<Car> Cars {  get; set; }
+        public DbSet<Owner> Owners { get; set; }
     }
 }

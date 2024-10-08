@@ -96,6 +96,7 @@ namespace CarDealerApp.Controllers
         {
             try
             {
+                plate = plate.ToUpper();
                 if (string.IsNullOrEmpty(plate))
                 {
                     return View("NotFound");

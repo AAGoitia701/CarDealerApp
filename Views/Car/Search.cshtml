@@ -20,11 +20,13 @@
             <td>@Model.Color</td>
             <td>@Model.DateTime.Year</td>
             <td>@Model.Owner</td>
-            <a asp-controller="Car" asp-action="Edit" asp-route-id="@Model.CarId" class="btn btn-primary">Edit</a>
-            <a onclick="confirmDelete('@Url.Action("Delete","Car",new{id = Model.CarId})')" class="btn btn-primary">Delete</a>
         </tr>
     </tbody>
 </table>
+<div class="btn-group" role="group">
+    <a asp-controller="Car" asp-action="Edit" asp-route-id="@Model.CarId" class="btn btn-primary mr-3">Edit</a>
+    <a onclick="confirmDelete('@Url.Action("Delete","Car",new{id = Model.CarId})')" class="btn btn-primary">Delete</a>
+</div>
 
 <a asp-controller="Car" asp-action="Index" class="btn btn-secondary">Go Back</a>
 

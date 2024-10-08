@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CarDealerApp.Data
 {
@@ -20,5 +21,7 @@ namespace CarDealerApp.Data
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "yyyy / MMMM")]
         public DateTime DateTime { get; set; }
         public string? Owner { get; set; }
+        
+        //public int OwnerId { get; set; }
     }
 }
