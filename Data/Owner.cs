@@ -11,7 +11,7 @@ namespace CarDealerApp.Data
         [Required]
         public string FullName {  get; set; }
         [Required]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "yyyy / MMMM")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime DateBirth { get; set; }
         [Required]
         public string PhoneNumber { get; set; }

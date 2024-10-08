@@ -18,7 +18,7 @@ namespace CarDealerApp.Data
         [Required]
         public string Brand { get; set; }
         [Required]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "yyyy / MMMM")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime DateTime { get; set; }
         public string? Owner { get; set; }
         

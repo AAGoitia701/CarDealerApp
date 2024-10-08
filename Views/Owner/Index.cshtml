@@ -23,7 +23,10 @@
                 <td>@owner.PhoneNumber</td>
                 <td>@owner.PostalCode</td>
                 <td>@owner.Email</td>
-
+                <div class="btn-group" role="group">
+                <td><a asp-controller="Owner" asp-action="Edit" asp-route-id="@owner.Id" class="btn btn-primary mr-3">Edit</a></td>
+                <td><a onclick="confirmDelete('@Url.Action("Delete","Owner",new{id = owner.Id})')" class="btn btn-primary">Delete</a></td>
+                </div>
         </tr>
         }
     </tbody>
