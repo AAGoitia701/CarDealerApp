@@ -65,5 +65,28 @@ namespace CarDealerApp.Controllers
             }
             
         }
+
+        public IActionResult Delete(int id) 
+        {
+            Owner owner = _context.Owners.Where(r => r.Id==id).FirstOrDefault();
+
+            if (owner == null) 
+            {
+                return View("NotFound");
+            }
+
+           return View(owner);
+        }
+        [HttpPost]
+        public IActionResult Delete(Owner owner)
+        {
+            if (owner == null)
+            {
+                return View("NotFound");
+            }
+            _context.Remove(owner);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

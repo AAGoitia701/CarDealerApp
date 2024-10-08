@@ -10,7 +10,7 @@
         }
         ).then(response => {
             if (response.ok) {
-                window.location.href = '/Car/Index'; // redirect to index
+                location.reload();
             } else {
                 alert('Error on delete');
             }

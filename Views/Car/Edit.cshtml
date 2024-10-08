@@ -1,7 +1,7 @@
 ﻿@model Car
 <h2>Edit Car</h2>
 <form method="post">
-
+    <input asp-for="CarId" hidden/>
     <div>
         <label asp-for="LicencePlate"></label>
         <input asp-for="LicencePlate" class="form-control" readonly/>
