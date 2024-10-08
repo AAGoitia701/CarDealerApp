@@ -6,18 +6,18 @@ namespace CarDealerApp.Data
     {
         [Key]
         public int Id { get; set; } 
-        [Required]
+        [Required(ErrorMessage = "Card ID is a required field")]
         public string CardId { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Full Name is a required field")]
         public string FullName {  get; set; }
-        [Required]
+        [Required(ErrorMessage = "Date of birth is a required field")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime DateBirth { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Phone number is a required field")]
         public string PhoneNumber { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Postal code is a required field")]
         public int PostalCode { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Email is a required field")]
         public string Email { get; set; }
     }
 }

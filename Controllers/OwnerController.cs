@@ -41,9 +41,29 @@ namespace CarDealerApp.Controllers
             }
             else
             {
-                return View("NotFound"); //has to be changed
+                return View(); //has to be changed
 
             }
+        }
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Owner owner)
+        {
+            if (ModelState.IsValid) 
+            { 
+                _context.Owners.Add(owner);
+                _context.SaveChanges();
+                return RedirectToAction("Index", "Owner");
+            }
+            else
+            {
+                return View();
+            }
+            
         }
     }
 }

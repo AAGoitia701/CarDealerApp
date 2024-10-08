@@ -1,5 +1,5 @@
 ﻿@model Owner
-
+<h2>New Car</h2>
 <form method="post">
     <div>
         <label asp-for="CardId"></label>
@@ -31,6 +31,6 @@
         <input asp-for="Email" class="form-control" />
         <span asp-validation-for="Email" class="text-danger"></span>
     </div>
-    <button type="submit" class="btn btn-primary">Update</button>
+    <button type="submit" class="btn btn-primary">Create</button>
     <a asp-controller="Owner" asp-action="Index">Go back to Owner List</a>
 </form>
