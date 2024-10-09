@@ -88,5 +88,17 @@ namespace CarDealerApp.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public IActionResult Search(string cardId)
+        {
+            Owner owner = _context.Owners.Where(r => r.CardId==cardId).FirstOrDefault();
+            if (owner == null) {
+                return View("NotFound");
+            }
+
+            return View(owner);
+
+        }
+        
     }
 }

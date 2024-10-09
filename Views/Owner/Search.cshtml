@@ -1,0 +1,28 @@
+﻿@model Owner
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Identification Card Number</th>
+            <th>Full Name</th>
+            <th>Date of Birth</th>
+            <th>Phone Number</th>
+            <th>Postal Code</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.CardId</td>
+            <td>@Model.FullName</td>
+            <td>@Model.DateBirth</td>
+            <td>@Model.PhoneNumber</td>
+            <td>@Model.PostalCode</td>
+            <td>@Model.Email</td>
+            <td><a asp-controller="Owner" asp-action="Edit" asp-route-id="@Model.Id">Edit</a></td>
+            <td><a onclick="confirmDelete('@Url.Action("Delete", "Owner", new{id = Model.Id})')">Delete</a></td>
+        </tr>
+    </tbody>
+</table>
+
+<a asp-controller="Owner" asp-action="Index">Go back to Owner List</a>

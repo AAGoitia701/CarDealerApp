@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,16 +9,21 @@ namespace CarDealerApp.Data
     {
         [Key]
         public int CarId { get; set; }
-        [Required]
+        [DisplayName("Licence Plate")]
+        [Required(ErrorMessage = "Licence Plate is a required field")]
         public string LicencePlate { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Color is a required field")]
         public string Color { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Model is a required field")]
         public string Model { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Brand is a required field")]
         public string Brand { get; set; }
-        [Required]
+
+        [DisplayName("Year")]
+        [Required(ErrorMessage = "Year is a required field")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime DateTime { get; set; }
         public string? Owner { get; set; }

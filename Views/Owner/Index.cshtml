@@ -1,7 +1,11 @@
 ﻿@model List<Owner>
 
 <h1>Owner List</h1>
-<a asp-controller="Owner" asp-action="Create">Create new Owner</a>
+<a asp-controller="Owner" asp-action="Create" class="btn btn-primary">New Owner</a>
+<form method="post" asp-controller="Owner" asp-action="Search">
+    <input name="cardId" placeholder="Identification Card Number" /> 
+    <button type="submit">Search</button>
+</form>
 <table class="table">
     <thead>
         <tr>
@@ -19,7 +23,7 @@
         <tr>
                 <td>@owner.CardId</td>
                 <td>@owner.FullName</td>
-                <td>@owner.DateBirth</td>
+                <td>@owner.DateBirth.ToString("yyyy / MM")</td>
                 <td>@owner.PhoneNumber</td>
                 <td>@owner.PostalCode</td>
                 <td>@owner.Email</td>
