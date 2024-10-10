@@ -19,7 +19,15 @@
             <td>@Model.Model</td>
             <td>@Model.Color</td>
             <td>@Model.DateTime.Year</td>
-            <td>@Model.Owner</td>
+            @if(Model.Owner == null)
+            {
+                <td>No Owner</td>
+            }
+            else
+            {
+                <td>@Model.Owner.FullName</td>
+                
+            }
         </tr>
     </tbody>
 </table>

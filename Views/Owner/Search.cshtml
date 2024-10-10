@@ -20,7 +20,7 @@
             <td>@Model.PostalCode</td>
             <td>@Model.Email</td>
             <td><a asp-controller="Owner" asp-action="Edit" asp-route-id="@Model.Id">Edit</a></td>
-            <td><a onclick="confirmDelete('@Url.Action("Delete", "Owner", new{id = Model.Id})')">Delete</a></td>
+            <td><a onclick="confirmDelete('@Url.Action("Delete", "Owner", new{id = Model.Id})')" class="btn btn-primary">Delete</a></td>
         </tr>
     </tbody>
 </table>

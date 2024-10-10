@@ -1,6 +1,7 @@
 ﻿using CarDealerApp.Data;
 using CarDealerApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 namespace CarDealerApp.Controllers
@@ -16,7 +17,7 @@ namespace CarDealerApp.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Car> carList = _context.Cars.ToList();
+            IEnumerable<Car> carList = _context.Cars.Include(r => r.Owner).ToList();
 
             return View(carList);
         }
@@ -101,7 +102,7 @@ namespace CarDealerApp.Controllers
                 {
                     return View("NotFound");
                 }
-                Car car = _context.Cars.Where(r => r.LicencePlate == plate).FirstOrDefault();
+                Car car = _context.Cars.Where(r => r.LicencePlate == plate).Include(r => r.Owner).FirstOrDefault();
 
                 if(car == null)
                 {

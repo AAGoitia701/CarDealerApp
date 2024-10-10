@@ -1,4 +1,5 @@
 ﻿@using CarDealerApp.Data;
+@using Microsoft.IdentityModel.Tokens
 @model List<Car> 
 
 
@@ -36,12 +37,15 @@
             <td>@car.Model</td>
             <td>@car.Color</td>
             <td>@car.DateTime.Year</td>
-            @if (!string.IsNullOrEmpty(car.Owner))
-            {
-                <td>@car.Owner</td>
-            }else{
-                <td>No Owner</td>
-            }
+                @if (@car.Owner==null)
+                {
+                    <td>No Owner</td>
+                }
+                else
+                {
+                    <td><a asp-controller="Owner" asp-action="Search" asp-route-cardId="@car.Owner.CardId" >@car.Owner.FullName</a></td>                    
+                }
+
             <div class="btn-group" role="group">
 
                 <td><a asp-controller="Car" asp-action="Edit" asp-route-id="@car.CarId" class="btn btn-primary">Edit</a></td>

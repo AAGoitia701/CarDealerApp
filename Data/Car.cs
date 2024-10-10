@@ -26,8 +26,8 @@ namespace CarDealerApp.Data
         [Required(ErrorMessage = "Year is a required field")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime DateTime { get; set; }
-        public string? Owner { get; set; }
-        
-        //public int OwnerId { get; set; }
+
+        public int? OwnerId { get; set; } //can have one or no owner
+        public Owner? Owner { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CarDealerApp.Data
 {
@@ -31,5 +32,7 @@ namespace CarDealerApp.Data
 
         [Required(ErrorMessage = "Email is a required field")]
         public string Email { get; set; }
+
+        public List<Car>? ListCars { get; set; } //can have many or no cars
     }
 }
