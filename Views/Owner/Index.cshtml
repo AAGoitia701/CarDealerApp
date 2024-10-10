@@ -15,6 +15,7 @@
             <th>PhoneNumber</th>
             <th>PostalCode</th>
             <th>Email</th>
+            <th>Cars Owned</th>
         </tr>
     </thead>
     <tbody>
@@ -27,6 +28,18 @@
                 <td>@owner.PhoneNumber</td>
                 <td>@owner.PostalCode</td>
                 <td>@owner.Email</td>
+                @if(owner.ListCars == null)
+                {
+                    <td>No Cars</td>
+                }
+                else
+                {
+                    @foreach(var car in owner.ListCars)
+                    {
+                        <td><a asp-controller="Car" asp-action="Search" asp-route-plate="@car.LicencePlate">@car.Model</a></td>
+                       
+                    }
+                }
                 <div class="btn-group" role="group">
                 <td><a asp-controller="Owner" asp-action="Edit" asp-route-id="@owner.Id" class="btn btn-primary mr-3">Edit</a></td>
                 <td><a onclick="confirmDelete('@Url.Action("Delete", "Owner", new{id = @owner.Id})')" class="btn btn-primary">Delete</a></td>

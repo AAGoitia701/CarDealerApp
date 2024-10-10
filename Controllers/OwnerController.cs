@@ -1,6 +1,7 @@
 ﻿using CarDealerApp.Data;
 using CarDealerApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CarDealerApp.Controllers
 {
@@ -14,7 +15,7 @@ namespace CarDealerApp.Controllers
         }
         public IActionResult Index()
         {
-            IEnumerable<Owner> ownerList = _context.Owners.ToList();
+            IEnumerable<Owner> ownerList = _context.Owners.Include(r => r.ListCars).ToList();
             return View(ownerList);
         }
 
