@@ -36,38 +36,80 @@ namespace CarDealerApp.Controllers
         [HttpPost]
         public IActionResult Edit(Car car) 
         {
-            if (ModelState.IsValid) 
+            try
             {
-                car.LicencePlate = car.LicencePlate.ToUpper();
-                car.Brand = car.Brand.ToUpper();
-                _context.Cars.Update(car);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    car.LicencePlate = car.LicencePlate.ToUpper();
+                    car.Brand = car.Brand.ToUpper();
+                    _context.Cars.Update(car);
+                    _context.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View();
+                }
             }
-            else
+            catch (DbUpdateException ex)
             {
-                return View();
+                if (ex.InnerException?.Message.Contains("FOREIGN KEY") == true)
+                {
+                    ModelState.AddModelError("OwnerId", "The Owner ID is not valid");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Opps! An Error Ocurred.");
+                }
             }
+            return View();
         }
+
+
+
         public IActionResult Create()
         {
             return View();
         }
 
+
+
+
         [HttpPost]
         public IActionResult Create(Car car)
         {
-            if (ModelState.IsValid)
+            try
             {
-                car.LicencePlate = car.LicencePlate.ToUpper();
-                car.Brand = car.Brand.ToUpper();
-                _context.Cars.Add(car);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    car.LicencePlate = car.LicencePlate.ToUpper();
+                    car.Brand = car.Brand.ToUpper();
+
+                    _context.Cars.Add(car);
+                    _context.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                return View();
+            }
+            catch (DbUpdateException ex) 
+            {
+                if (ex.InnerException?.Message.Contains("FOREIGN KEY") == true)
+                {
+                    ModelState.AddModelError("OwnerId", "The Owner ID is not valid");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Opps! An Error Ocurred.");
+                }
             }
 
             return View();
+
         }
+
+
+
         /*
         public IActionResult Delete(int id)
         {

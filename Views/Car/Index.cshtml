@@ -4,20 +4,21 @@
 
 
 <div class="col-3 w-100">
-  
-    <h1>Car List</h1>
-    <a asp-controller="Car" asp-action="Create"  class=" btn btn-primary m-3">New Car</a>
+    <div class="d-flex justify-content-between">
+        <h1 class="m-3 w-50">Car List</h1>
+        <a asp-controller="Car" asp-action="Create" class="btn btn-outline-success align-self-center h-30"> + New Car</a>
+    </div>
     <div >
         <form method="get" asp-controller="Car" asp-action="Search">
             <input type="text" name="plate" placeholder="Enter Licence Plate" />
-            <select name="Brand" id="Brand">
+            <select name="Brand" id="Brand" class="dropdown">
                 <option value="">-- Select Brand --</option>
                 @foreach (var brand in Model)
                 {
                     <option>@brand.Brand</option>
                 }
             </select>
-            <button type="submit">Search</button>
+            <button type="submit" class="btn btn-primary">Search</button>
 
         </form>
     </div>
@@ -53,9 +54,9 @@
 
             <div class="btn-group" role="group">
 
-                <td><a asp-controller="Car" asp-action="Edit" asp-route-id="@car.CarId" class="btn btn-primary">Edit</a></td>
+                <td><a asp-controller="Car" asp-action="Edit" asp-route-id="@car.CarId" class="btn btn-outline-secondary">Edit</a></td>
 
-                <td><a onclick="confirmDelete('@Url.Action("Delete", "Car", new {id = car.CarId})')" class="btn btn-primary">Delete</a></td>
+                <td><a onclick="confirmDelete('@Url.Action("Delete", "Car", new {id = car.CarId})')" class="btn btn-outline-secondary">Delete</a></td>
             </div>
                 
         </tr>

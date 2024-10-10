@@ -1,8 +1,9 @@
 ﻿@model List<Owner>
-
 <div class="col-3 w-100">
-    <h1>Owner List</h1>
-    <a asp-controller="Owner" asp-action="Create" class="btn btn-primary m-3">New Owner</a>
+    <div class="d-flex justify-content-between">
+        <h1 class="m-3 w-50">Owner List</h1>
+        <a asp-controller="Owner" asp-action="Create" class="btn btn-outline-success align-self-center h-30">New Owner</a>
+    </div>
     <div>
         <form method="post" asp-controller="Owner" asp-action="Search">
             <input name="cardId" placeholder="Identification Card Number" /> 
