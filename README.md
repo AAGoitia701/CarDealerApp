@@ -14,6 +14,6 @@ Welcome to **CarDealerApp**, a car dealership management application developed i
 - **Frontend**: HTML, CSS, JavaScript
 - **Framework**: ASP.NET
 
---<Contributions>--
+## Contributions
 Contributions are welcome. If you wish to contribute, please open an issue or send a pull request.
 
