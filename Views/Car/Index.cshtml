@@ -10,20 +10,26 @@
     <div >
         <form method="get" asp-controller="Car" asp-action="Search">
             <input type="text" name="plate" placeholder="Enter Licence Plate" />
+            <select name="Brand" id="Brand">
+                <option value="">-- Select Brand --</option>
+                @foreach (var brand in Model)
+                {
+                    <option>@brand.Brand</option>
+                }
+            </select>
             <button type="submit">Search</button>
+
         </form>
-        
     </div>
     
 </div>
-
+<div class="table-responsive">
 <table class="table">
     <thead>
         <tr>
             <th>Licence Plate</th>
             <th>Brand</th>
             <th>Model</th>
-            <th>Color</th>
             <th>Year</th>
             <th>Owner</th>
         </tr>
@@ -35,7 +41,6 @@
             <td>@car.LicencePlate</td>
             <td>@car.Brand</td>
             <td>@car.Model</td>
-            <td>@car.Color</td>
             <td>@car.DateTime.Year</td>
                 @if (@car.Owner==null)
                 {
@@ -58,7 +63,7 @@
     </tbody>
 
 </table>
-
+</div>
 @section Scripts{
     <script src="/js/Confirm.js"></script>
 }

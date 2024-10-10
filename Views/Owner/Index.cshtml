@@ -1,20 +1,23 @@
 ﻿@model List<Owner>
 
-<h1>Owner List</h1>
-<a asp-controller="Owner" asp-action="Create" class="btn btn-primary">New Owner</a>
-<form method="post" asp-controller="Owner" asp-action="Search">
-    <input name="cardId" placeholder="Identification Card Number" /> 
-    <button type="submit">Search</button>
-</form>
+<div class="col-3 w-100">
+    <h1>Owner List</h1>
+    <a asp-controller="Owner" asp-action="Create" class="btn btn-primary m-3">New Owner</a>
+    <div>
+        <form method="post" asp-controller="Owner" asp-action="Search">
+            <input name="cardId" placeholder="Identification Card Number" /> 
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</div>
+
+<div class="table-responsive">
 <table class="table">
     <thead>
         <tr>
+            <th>ID</th>
             <th>CardId</th>
             <th>FullName</th>
-            <th>DateBirth</th>
-            <th>PhoneNumber</th>
-            <th>PostalCode</th>
-            <th>Email</th>
             <th>Cars Owned</th>
         </tr>
     </thead>
@@ -22,33 +25,35 @@
         @foreach(var owner in Model)
         {
         <tr>
+                <td>@owner.Id</td>
                 <td>@owner.CardId</td>
                 <td>@owner.FullName</td>
-                <td>@owner.DateBirth.ToString("yyyy / MM")</td>
-                <td>@owner.PhoneNumber</td>
-                <td>@owner.PostalCode</td>
-                <td>@owner.Email</td>
                 @if(owner.ListCars == null)
                 {
                     <td>No Cars</td>
                 }
                 else
                 {
-                    @foreach(var car in owner.ListCars)
-                    {
-                        <td><a asp-controller="Car" asp-action="Search" asp-route-plate="@car.LicencePlate">@car.Model</a></td>
-                       
-                    }
+                     <td>
+                        @foreach(var car in owner.ListCars)
+                        {
+
+                            <a asp-controller="Car" asp-action="Search" asp-route-plate="@car.LicencePlate">@car.Brand</a>
+                            <span> / </span>
+                        }
+                     </td>
+
                 }
-                <div class="btn-group" role="group">
-                <td><a asp-controller="Owner" asp-action="Edit" asp-route-id="@owner.Id" class="btn btn-primary mr-3">Edit</a></td>
-                <td><a onclick="confirmDelete('@Url.Action("Delete", "Owner", new{id = @owner.Id})')" class="btn btn-primary">Delete</a></td>
+
+                <div class="btn-group justify-content-end" role="group">
+                    <td><a asp-controller="Owner" asp-action="Edit" asp-route-id="@owner.Id" class="btn btn-primary mr-3">Edit</a></td>
+                    <td><a onclick="confirmDelete('@Url.Action("Delete", "Owner", new{id = @owner.Id})')" class="btn btn-primary">Delete</a></td>
                 </div>
         </tr>
         }
     </tbody>
 </table>
-
+</div>
 @section Scripts{
     <script src="~/js/Confirm.js"></script>
 }

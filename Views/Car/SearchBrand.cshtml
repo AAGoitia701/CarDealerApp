@@ -1,0 +1,43 @@
+﻿@model List<Car>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Licence Plate</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Year</th>
+                <th>Owner</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var car in Model)
+            {
+                <tr>
+                    <td>@car.LicencePlate</td>
+                    <td>@car.Brand</td>
+                    <td>@car.Model</td>
+                    <td>@car.DateTime.Year</td>
+                    @if (@car.Owner == null)
+                    {
+                        <td>No Owner</td>
+                    }
+                    else
+                    {
+                        <td><a asp-controller="Owner" asp-action="Search" asp-route-cardId="@car.Owner.CardId">@car.Owner.FullName</a></td>
+                    }
+
+                    <div class="btn-group" role="group">
+
+                        <td><a asp-controller="Car" asp-action="Edit" asp-route-id="@car.CarId" class="btn btn-primary">Edit</a></td>
+
+                        <td><a onclick="confirmDelete('@Url.Action("Delete", "Car", new {id = car.CarId})')" class="btn btn-primary">Delete</a></td>
+                    </div>
+
+            </tr>
+            }
+    </tbody>
+
+</table>
+</div>

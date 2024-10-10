@@ -39,6 +39,7 @@ namespace CarDealerApp.Controllers
             if (ModelState.IsValid) 
             {
                 car.LicencePlate = car.LicencePlate.ToUpper();
+                car.Brand = car.Brand.ToUpper();
                 _context.Cars.Update(car);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
@@ -59,6 +60,7 @@ namespace CarDealerApp.Controllers
             if (ModelState.IsValid)
             {
                 car.LicencePlate = car.LicencePlate.ToUpper();
+                car.Brand = car.Brand.ToUpper();
                 _context.Cars.Add(car);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
@@ -93,23 +95,40 @@ namespace CarDealerApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult Search(string plate)
+        public IActionResult Search(string plate, string Brand)
         {
             try
             {
-                plate = plate.ToUpper();
-                if (string.IsNullOrEmpty(plate))
+                
+                if (string.IsNullOrEmpty(plate) && string.IsNullOrEmpty(Brand))
                 {
                     return View("NotFound");
                 }
-                Car car = _context.Cars.Where(r => r.LicencePlate == plate).Include(r => r.Owner).FirstOrDefault();
 
-                if(car == null)
-                {
-                    return View("NotFound");
-                }           
+                    if (!(string.IsNullOrEmpty(plate)))
+                    {
+                        plate = plate.ToUpper();
+                        Car car = _context.Cars.Where(r => r.LicencePlate == plate).Include(r => r.Owner).FirstOrDefault();
+                            if(car == null)
+                        {
+                            return View("NotFound");
+                        }           
+                        return View(car);   
+                    }
 
-                return View(car);   
+                    if (!(string.IsNullOrEmpty(Brand)))
+                    {
+                        Brand = Brand.ToUpper();
+                        IEnumerable<Car> car = _context.Cars.Where(r => r.Brand == Brand).Include(r => r.Owner).ToList();
+                        if (car == null )
+                        {
+                            return View("NotFound");
+                        }
+                        return View("SearchBrand", car);
+                    }
+
+
+                return View("NotFound");
 
             }
             catch (Exception err)
@@ -119,5 +138,17 @@ namespace CarDealerApp.Controllers
             }
             
         }
+        /*
+        public IActionResult SearchBrand(string brand)
+        {
+            if (brand == null)
+            {
+                return View("NotFound");
+            }
+
+            IEnumerable<Car> listCar = _context.Cars.Where(r => r.Brand == brand).ToList();
+            return View(listCar);
+
+        }*/
     }
 }
