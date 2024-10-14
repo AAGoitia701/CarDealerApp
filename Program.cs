@@ -11,13 +11,35 @@ builder.Services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(buil
 builder.Services.AddRazorPages(); //So identity works
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<ApplicationDbContext>();
 
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequireDigit = true;
+    options.Password.RequiredLength = 8;
+    options.Password.RequireUppercase = true;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequireLowercase = true;
+
+    options.Lockout.AllowedForNewUsers = true;
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
+    options.Lockout.MaxFailedAccessAttempts = 5;
+
+}
+);
+
+builder.Services.ConfigureApplicationCookie(options =>
+{  
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+    options.LoginPath = "/Identity/Account/Login";
+    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+    options.SlidingExpiration = true;
+
+});
+
 builder.Services.AddAuthentication()
    .AddGoogle(options =>
    {
-       IConfigurationSection googleAuthNSection =
-       config.GetSection("Authentication:Google");
-       options.ClientId = googleAuthNSection["ClientId"];
-       options.ClientSecret = googleAuthNSection["ClientSecret"];
+       options.ClientId = builder.Configuration["Authentication:Google:Client"];
+       options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
    });
 
 var app = builder.Build();
