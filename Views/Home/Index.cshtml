@@ -5,14 +5,14 @@
 }
 
 <div>
-    <h1>Bienvenido a CarDealerApp</h1>
-    <p>Gestiona todos tus vehículos desde un solo lugar.</p>
+    <h1>Welcome to Car-Dealer </h1>
+    <p>Manage all you cars in one place.</p>
 
     @if (User.Identity.IsAuthenticated)
     {
-        <p>Hola, @User.Identity.Name. ¡Bienvenido de nuevo!</p>
-        <a href="/Account/Manage" class="btn btn-primary">Mi cuenta</a>
-        <a href="/Account/Logout" class="btn btn-secondary">Cerrar sesión</a>
+        <p>Hello, @User.Identity.Name. ¡Welcome again!</p>
+        <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-primary">My Account</a>
+        <a asp-area="Identity" asp-page="/Account/Logout" class="btn btn-secondary">Logout</a>
     }
     else
     {
