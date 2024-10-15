@@ -1,8 +1,47 @@
-﻿@{
+﻿@model List<Car>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div>
+    <h1>Bienvenido a CarDealerApp</h1>
+    <p>Gestiona todos tus vehículos desde un solo lugar.</p>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <p>Hola, @User.Identity.Name. ¡Bienvenido de nuevo!</p>
+        <a href="/Account/Manage" class="btn btn-primary">Mi cuenta</a>
+        <a href="/Account/Logout" class="btn btn-secondary">Cerrar sesión</a>
+    }
+    else
+    {
+    <div class="container my-5">
+    <!-- Cards -->
+      <div class="row">
+    @foreach(var car in Model)
+    {               
+      <!-- Ficha 1 -->
+      <div class="col-md-4 mb-4">
+        <div class="card shadow">
+          <div class="row g-0">
+            <div class="col-md-12">
+              <img src="https://via.placeholder.com/400x300" class="img-fluid rounded-start" alt="Imagen del vehículo">
+            </div>
+            <div class="col-md-12">
+              <div class="card-body">
+                <h5 class="card-title">@car.Model</h5>
+                <p class="card-text"><strong>Year</strong> @car.DateTime.Year</p>
+                <p class="card-text"><strong>Color:</strong>@car.Color</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+    </div>
+    </div>
+
+
+    }
 </div>
