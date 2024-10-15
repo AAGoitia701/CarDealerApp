@@ -8,14 +8,6 @@
     <h1>Welcome to Car-Dealer </h1>
     <p>Manage all you cars in one place.</p>
 
-    @if (User.Identity.IsAuthenticated)
-    {
-        <p>Hello, @User.Identity.Name. ¡Welcome again!</p>
-        <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-primary">My Account</a>
-        <a asp-area="Identity" asp-page="/Account/Logout" class="btn btn-secondary">Logout</a>
-    }
-    else
-    {
     <div class="container my-5">
     <!-- Cards -->
       <div class="row">
@@ -41,7 +33,12 @@
     }
     </div>
     </div>
-
-
-    }
 </div>
+@if (User.Identity.IsAuthenticated) //Id like to make a pop up with this message with no buttons.
+{
+    <script type="text/javascript">
+        //toastr.info('Are you the 6 fingered man?')
+        alert("Hello, @User.Identity.Name. ¡Welcome again!");
+    </script>
+
+}
