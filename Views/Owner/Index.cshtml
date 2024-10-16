@@ -27,7 +27,7 @@
         {
         <tr>
                 <td>@owner.Id</td>
-                <td>@owner.CardId</td>
+                <td><a asp-controller="Owner" asp-action="Search" asp-route-cardId="@owner.CardId">@owner.CardId</a></td>
                 <td>@owner.FullName</td>
                 @if(owner.ListCars == null)
                 {

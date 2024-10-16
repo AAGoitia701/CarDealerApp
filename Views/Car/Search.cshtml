@@ -20,7 +20,7 @@
                         }
                         else
                         {
-                            <p class="card-text"><strong>Owner:</strong> @Model.Owner.FullName</p>
+                            <p class="card-text"><strong>Owner:</strong><a asp-controller="Owner" asp-action="Search" asp-route-cardId="@Model.Owner.CardId"> @Model.Owner.FullName</a></p>
                         }
                     
                     </div>

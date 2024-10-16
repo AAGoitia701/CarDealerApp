@@ -1,7 +1,11 @@
 ﻿@model Car
 <h2>Edit Car</h2>
-<form method="post">
+<div class="col-md-12">
+    <img src="@Model.ImgUrl" class="img-fluid rounded-start" alt="Imagen del vehículo">
+</div>
+<form method="post" enctype="multipart/form-data">
     <input asp-for="CarId" hidden/>
+    <input type="hidden" asp-for="ImgUrl" />
     <div>
         <label asp-for="LicencePlate"></label>
         <input asp-for="LicencePlate" class="form-control" readonly/>
@@ -26,6 +30,11 @@
         <label asp-for="DateTime"></label>
         <input asp-for="DateTime" class="form-control" type="date"/>
         <span asp-validation-for="DateTime" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="ImgUrl"></label>
+        <input asp-for="ImgUrl" name="file" type="file" accept="image/*" class="form-control" />
+        <span asp-validation-for="ImgUrl" class="text-danger"></span>
     </div>
     <div>
         <label asp-for="OwnerId"></label>

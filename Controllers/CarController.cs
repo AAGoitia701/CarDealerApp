@@ -1,6 +1,8 @@
 ﻿using CarDealerApp.Data;
 using CarDealerApp.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Web.Helpers;
@@ -27,6 +29,7 @@ namespace CarDealerApp.Controllers
         public IActionResult Edit(int id) 
         {
             Car car = _context.Cars.Where(r => r.CarId.Equals(id)).FirstOrDefault();
+            Console.WriteLine($"ImgUrl before update: {car.ImgUrl}");
             if (car == null)
             {
                 return NotFound();
@@ -36,14 +39,22 @@ namespace CarDealerApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Car car) 
+        public IActionResult Edit(Car car, IFormFile? file) 
         {
+
             try
             {
                 if (ModelState.IsValid)
                 {
                     car.LicencePlate = car.LicencePlate.ToUpper();
                     car.Brand = car.Brand.ToUpper();
+
+                    // if there is an img, it will manage it
+                    if (file != null)
+                    {
+                        car.ImgUrl = SaveImage(file, car);
+                    }                   
+
                     _context.Cars.Update(car);
                     _context.SaveChanges();
                     return RedirectToAction("Index");
@@ -87,10 +98,12 @@ namespace CarDealerApp.Controllers
                     car.LicencePlate = car.LicencePlate.ToUpper();
                     car.Brand = car.Brand.ToUpper();
 
-                    // if there is an img, it will manage it
-                    if (file != null)
+                    //save image
+                    SaveImage(file, car); 
+                    
+                    if(car.Owner.Id == 0 || car.Owner.Id == null)
                     {
-                        car.ImgUrl = SaveImage(file, car.ImgUrl);
+
                     }
 
                     _context.Cars.Add(car);
@@ -202,31 +215,35 @@ namespace CarDealerApp.Controllers
         }*/
 
         [HttpPost]
-        private string SaveImage(IFormFile file, string? currentImgUrl)
+        private string SaveImage(IFormFile? file, Car car)
         {
+            string fileName = "";
+            string productPath = "";
             string wwwRootPath = _webHostEnvironment.WebRootPath;
-            string fileName = Guid.NewGuid() + Path.GetExtension(file.FileName); // unique name
-            string productPath = Path.Combine(wwwRootPath, "images");
-
-            // delete the img if it already exists
-            if (!string.IsNullOrEmpty(currentImgUrl))
+            if (file != null)
             {
-                string oldImagePath = Path.Combine(wwwRootPath, currentImgUrl.TrimStart('/'));
-                if (System.IO.File.Exists(oldImagePath))
-                    System.IO.File.Delete(oldImagePath);
+                fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);//creating name for file uploaded
+                productPath = Path.Combine(wwwRootPath, @"images"); //getting the route of the right folder
+
+                if (!string.IsNullOrEmpty(car.ImgUrl)) //check if there is an imageUrl in the folder for this particular product
+                {
+                    //delete old img
+                    var oldImagePath = Path.Combine(wwwRootPath, car.ImgUrl.TrimStart('/'));
+                    if (System.IO.File.Exists(oldImagePath)) //check if that img exists
+                    {
+                        System.IO.File.Delete(oldImagePath);
+                    }
+                }
+
+                using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
+                {
+                    file.CopyTo(fileStream);
+                }
+
+                car.ImgUrl = @"/images/" + fileName;
             }
 
-            // create directory if it doesn't exist
-            if (!Directory.Exists(productPath))
-                Directory.CreateDirectory(productPath);
-
-            // save new img
-            using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
-            {
-                file.CopyTo(fileStream);
-            }
-
-            return $"/images/{fileName}"; // return new url for img
+            return car.ImgUrl;
         }
     }
 }

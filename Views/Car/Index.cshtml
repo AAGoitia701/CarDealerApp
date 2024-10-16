@@ -39,7 +39,7 @@
          @foreach(var car in Model)
             {
         <tr>     
-            <td>@car.LicencePlate</td>
+            <td><a asp-controller="Car" asp-action="Search" asp-route-plate="@car.LicencePlate">@car.LicencePlate</a></td>
             <td>@car.Brand</td>
             <td>@car.Model</td>
             <td>@car.DateTime.Year</td>
