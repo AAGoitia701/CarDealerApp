@@ -3,16 +3,18 @@ using CarDealerApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.Web.Helpers;
 
 namespace CarDealerApp.Controllers
 {
     public class CarController : Controller
     {
         private readonly ApplicationDbContext _context;
-
-        public CarController(ApplicationDbContext context)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public CarController(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;   
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
@@ -76,7 +78,7 @@ namespace CarDealerApp.Controllers
 
 
         [HttpPost]
-        public IActionResult Create(Car car)
+        public IActionResult Create(Car car, IFormFile? file)
         {
             try
             {
@@ -84,6 +86,12 @@ namespace CarDealerApp.Controllers
                 {
                     car.LicencePlate = car.LicencePlate.ToUpper();
                     car.Brand = car.Brand.ToUpper();
+
+                    // if there is an img, it will manage it
+                    if (file != null)
+                    {
+                        car.ImgUrl = SaveImage(file, car.ImgUrl);
+                    }
 
                     _context.Cars.Add(car);
                     _context.SaveChanges();
@@ -192,5 +200,33 @@ namespace CarDealerApp.Controllers
             return View(listCar);
 
         }*/
+
+        [HttpPost]
+        private string SaveImage(IFormFile file, string? currentImgUrl)
+        {
+            string wwwRootPath = _webHostEnvironment.WebRootPath;
+            string fileName = Guid.NewGuid() + Path.GetExtension(file.FileName); // unique name
+            string productPath = Path.Combine(wwwRootPath, "images");
+
+            // delete the img if it already exists
+            if (!string.IsNullOrEmpty(currentImgUrl))
+            {
+                string oldImagePath = Path.Combine(wwwRootPath, currentImgUrl.TrimStart('/'));
+                if (System.IO.File.Exists(oldImagePath))
+                    System.IO.File.Delete(oldImagePath);
+            }
+
+            // create directory if it doesn't exist
+            if (!Directory.Exists(productPath))
+                Directory.CreateDirectory(productPath);
+
+            // save new img
+            using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
+            {
+                file.CopyTo(fileStream);
+            }
+
+            return $"/images/{fileName}"; // return new url for img
+        }
     }
 }

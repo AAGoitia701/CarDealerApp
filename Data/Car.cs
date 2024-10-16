@@ -27,7 +27,11 @@ namespace CarDealerApp.Data
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime DateTime { get; set; }
 
+        [DisplayName("Image")]
+        public string? ImgUrl { get; set; }
+
         public int? OwnerId { get; set; } //can have one or no owner
         public Owner? Owner { get; set; }
+
     }
 }

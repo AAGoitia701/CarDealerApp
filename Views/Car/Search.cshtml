@@ -1,39 +1,39 @@
 ﻿@model Car
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Licence Plate</th>
-            <th>Brand</th>
-            <th>Model</th>
-            <th>Color</th>
-            <th>Year</th>
-            <th>Owner</th>
-        </tr>
-    </thead>
+<div class="d-flex justify-content-center">
+    <div class="col-md-4 mb-4">
+        <div class="card shadow">
+            <div class="row g-0">
+                <div class="col-md-12">
+                    <img src="@Model.ImgUrl"class="img-fluid rounded-start" alt="Imagen del vehículo">
+                </div>
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <h5 class="card-title"><strong>Brand:</strong> @Model.Brand</h5>
+                        <h5 class="card-title"><strong>Model:</strong> @Model.Model</h5>
+                        <p class="card-text"><strong>Licence Plate:</strong> @Model.LicencePlate</p>
+                        <p class="card-text"><strong>Year</strong> @Model.DateTime.Year</p>
+                        <p class="card-text"><strong>Color:</strong> @Model.Color</p>
+                        @if (Model.Owner == null)
+                        {
+                            <p class="card-text"><strong>No Owner</strong></p>
+                        }
+                        else
+                        {
+                            <p class="card-text"><strong>Owner:</strong> @Model.Owner.FullName</p>
+                        }
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <tbody>
-        <tr>
-            <td>@Model.LicencePlate</td>
-            <td>@Model.Brand</td>
-            <td>@Model.Model</td>
-            <td>@Model.Color</td>
-            <td>@Model.DateTime.Year</td>
-            @if(Model.Owner == null)
-            {
-                <td>No Owner</td>
-            }
-            else
-            {
-                <td>@Model.Owner.FullName</td>
-                
-            }
-        </tr>
-    </tbody>
-</table>
-<div class="btn-group" role="group">
-    <a asp-controller="Car" asp-action="Edit" asp-route-id="@Model.CarId" class="btn btn-primary mr-3">Edit</a>
-    <a onclick="confirmDelete('@Url.Action("Delete","Car",new{id = Model.CarId})')" class="btn btn-primary">Delete</a>
+
+<div class="d-flex justify-content-center" role="group">
+    <a asp-controller="Car" asp-action="Edit" asp-route-id="@Model.CarId" class="btn btn-outline-primary m-5 w-20">Edit</a>
+    <a onclick="confirmDelete('@Url.Action("Delete","Car",new{id = Model.CarId})')" class="btn btn-outline-primary m-5 w-20">Delete</a>
 </div>
 
 <a asp-controller="Car" asp-action="Index" class="btn btn-secondary">Go Back</a>

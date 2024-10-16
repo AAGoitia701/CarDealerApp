@@ -1,5 +1,5 @@
 ﻿@model Car
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <div>
         <label asp-for="LicencePlate"></label>
         <input asp-for="LicencePlate" class="form-control" />
@@ -24,6 +24,11 @@
         <label asp-for="DateTime"></label>
         <input asp-for="DateTime" class="form-control" type="date"/>
         <span asp-validation-for="DateTime" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="ImgUrl"></label>
+        <input asp-for="ImgUrl" name="file" accept="image/*" class="form-control" type="file" />
+        <span asp-validation-for="ImgUrl" class="text-danger"></span>
     </div>
     <div>        
         <label asp-for="OwnerId"></label>
