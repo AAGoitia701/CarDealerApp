@@ -31,7 +31,6 @@
                     <div class="btn-group" role="group">
 
                         <td><a asp-controller="Car" asp-action="Edit" asp-route-id="@car.CarId" class="btn btn-primary">Edit</a></td>
-
                         <td><a onclick="confirmDelete('@Url.Action("Delete", "Car", new {id = car.CarId})')" class="btn btn-primary">Delete</a></td>
                     </div>
 

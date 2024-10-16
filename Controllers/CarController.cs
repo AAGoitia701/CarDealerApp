@@ -132,7 +132,7 @@ namespace CarDealerApp.Controllers
             }
             _context.Remove(car);
             _context.SaveChanges();
-
+            TempData["success"] = "You have deleted the car successfully";
             return RedirectToAction("Index");
         }
 

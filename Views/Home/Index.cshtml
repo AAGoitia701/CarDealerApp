@@ -34,11 +34,3 @@
     </div>
     </div>
 </div>
-@if (User.Identity.IsAuthenticated) //Id like to make a pop up with this message with no buttons.
-{
-    <script type="text/javascript">
-        //toastr.info('Are you the 6 fingered man?')
-        alert("Hello, @User.Identity.Name. ¡Welcome again!");
-    </script>
-
-}
