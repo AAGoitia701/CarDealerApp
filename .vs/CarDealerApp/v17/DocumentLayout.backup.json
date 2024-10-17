@@ -1,0 +1,142 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\CarDealerApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5656D0D7-B82D-4F63-9387-D73B393F1DFB}|CarDealerApp.csproj|c:\\cardealerapp\\views\\car\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5656D0D7-B82D-4F63-9387-D73B393F1DFB}|CarDealerApp.csproj|solutionrelative:views\\car\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5656D0D7-B82D-4F63-9387-D73B393F1DFB}|CarDealerApp.csproj|c:\\cardealerapp\\views\\car\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{5656D0D7-B82D-4F63-9387-D73B393F1DFB}|CarDealerApp.csproj|solutionrelative:views\\car\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5656D0D7-B82D-4F63-9387-D73B393F1DFB}|CarDealerApp.csproj|c:\\cardealerapp\\wwwroot\\css\\searchowner.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{5656D0D7-B82D-4F63-9387-D73B393F1DFB}|CarDealerApp.csproj|solutionrelative:wwwroot\\css\\searchowner.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5656D0D7-B82D-4F63-9387-D73B393F1DFB}|CarDealerApp.csproj|c:\\cardealerapp\\controllers\\carcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5656D0D7-B82D-4F63-9387-D73B393F1DFB}|CarDealerApp.csproj|solutionrelative:controllers\\carcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5656D0D7-B82D-4F63-9387-D73B393F1DFB}|CarDealerApp.csproj|c:\\cardealerapp\\controllers\\ownercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5656D0D7-B82D-4F63-9387-D73B393F1DFB}|CarDealerApp.csproj|solutionrelative:controllers\\ownercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5656D0D7-B82D-4F63-9387-D73B393F1DFB}|CarDealerApp.csproj|c:\\cardealerapp\\data\\owner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5656D0D7-B82D-4F63-9387-D73B393F1DFB}|CarDealerApp.csproj|solutionrelative:data\\owner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{131369f2-062d-44a2-8671-91ff31efb4f4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{c9c0ae26-aa77-11d2-b3f0-0000f87570ee}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SearchOwner.css",
+              "DocumentMoniker": "C:\\CarDealerApp\\wwwroot\\css\\SearchOwner.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\SearchOwner.css",
+              "ToolTip": "C:\\CarDealerApp\\wwwroot\\css\\SearchOwner.css",
+              "RelativeToolTip": "wwwroot\\css\\SearchOwner.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-10-17T10:15:59.467Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\CarDealerApp\\Views\\Car\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Views\\Car\\Edit.cshtml",
+              "ToolTip": "C:\\CarDealerApp\\Views\\Car\\Edit.cshtml",
+              "RelativeToolTip": "Views\\Car\\Edit.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-17T10:12:30.333Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\CarDealerApp\\Views\\Car\\Create.cshtml",
+              "RelativeDocumentMoniker": "Views\\Car\\Create.cshtml",
+              "ToolTip": "C:\\CarDealerApp\\Views\\Car\\Create.cshtml",
+              "RelativeToolTip": "Views\\Car\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-17T07:34:22.957Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Owner.cs",
+              "DocumentMoniker": "C:\\CarDealerApp\\Data\\Owner.cs",
+              "RelativeDocumentMoniker": "Data\\Owner.cs",
+              "ToolTip": "C:\\CarDealerApp\\Data\\Owner.cs",
+              "RelativeToolTip": "Data\\Owner.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-17T07:33:42.467Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "OwnerController.cs",
+              "DocumentMoniker": "C:\\CarDealerApp\\Controllers\\OwnerController.cs",
+              "RelativeDocumentMoniker": "Controllers\\OwnerController.cs",
+              "ToolTip": "C:\\CarDealerApp\\Controllers\\OwnerController.cs",
+              "RelativeToolTip": "Controllers\\OwnerController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-17T07:33:37.319Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CarController.cs",
+              "DocumentMoniker": "C:\\CarDealerApp\\Controllers\\CarController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CarController.cs",
+              "ToolTip": "C:\\CarDealerApp\\Controllers\\CarController.cs",
+              "RelativeToolTip": "Controllers\\CarController.cs",
+              "ViewState": "AgIAAPAAAAAAAAAAAAAawP0AAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-16T19:48:19.141Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

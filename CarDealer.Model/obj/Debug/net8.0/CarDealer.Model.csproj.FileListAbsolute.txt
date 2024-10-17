@@ -1,0 +1,13 @@
+C:\CarDealerApp\CarDealer.Model\bin\Debug\net8.0\CarDealer.Model.deps.json
+C:\CarDealerApp\CarDealer.Model\bin\Debug\net8.0\CarDealer.Model.dll
+C:\CarDealerApp\CarDealer.Model\bin\Debug\net8.0\CarDealer.Model.pdb
+C:\CarDealerApp\CarDealer.Model\obj\Debug\net8.0\CarDealer.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\CarDealerApp\CarDealer.Model\obj\Debug\net8.0\CarDealer.Model.AssemblyInfoInputs.cache
+C:\CarDealerApp\CarDealer.Model\obj\Debug\net8.0\CarDealer.Model.AssemblyInfo.cs
+C:\CarDealerApp\CarDealer.Model\obj\Debug\net8.0\CarDealer.Model.csproj.CoreCompileInputs.cache
+C:\CarDealerApp\CarDealer.Model\obj\Debug\net8.0\CarDealer.Model.sourcelink.json
+C:\CarDealerApp\CarDealer.Model\obj\Debug\net8.0\CarDealer.Model.dll
+C:\CarDealerApp\CarDealer.Model\obj\Debug\net8.0\refint\CarDealer.Model.dll
+C:\CarDealerApp\CarDealer.Model\obj\Debug\net8.0\CarDealer.Model.pdb
+C:\CarDealerApp\CarDealer.Model\obj\Debug\net8.0\ref\CarDealer.Model.dll
+C:\CarDealerApp\CarDealer.Model\obj\Debug\net8.0\CarDealer.Model.csproj.AssemblyReference.cache

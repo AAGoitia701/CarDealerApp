@@ -1,0 +1,16 @@
+C:\CarDealerApp\CarDealer.DataAccess\bin\Debug\net8.0\CarDealer.DataAccess.deps.json
+C:\CarDealerApp\CarDealer.DataAccess\bin\Debug\net8.0\CarDealer.DataAccess.dll
+C:\CarDealerApp\CarDealer.DataAccess\bin\Debug\net8.0\CarDealer.DataAccess.pdb
+C:\CarDealerApp\CarDealer.DataAccess\obj\Debug\net8.0\CarDealer.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\CarDealerApp\CarDealer.DataAccess\obj\Debug\net8.0\CarDealer.DataAccess.AssemblyInfoInputs.cache
+C:\CarDealerApp\CarDealer.DataAccess\obj\Debug\net8.0\CarDealer.DataAccess.AssemblyInfo.cs
+C:\CarDealerApp\CarDealer.DataAccess\obj\Debug\net8.0\CarDealer.DataAccess.csproj.CoreCompileInputs.cache
+C:\CarDealerApp\CarDealer.DataAccess\obj\Debug\net8.0\CarDealer.DataAccess.sourcelink.json
+C:\CarDealerApp\CarDealer.DataAccess\obj\Debug\net8.0\CarDealer.DataAccess.dll
+C:\CarDealerApp\CarDealer.DataAccess\obj\Debug\net8.0\refint\CarDealer.DataAccess.dll
+C:\CarDealerApp\CarDealer.DataAccess\obj\Debug\net8.0\CarDealer.DataAccess.pdb
+C:\CarDealerApp\CarDealer.DataAccess\obj\Debug\net8.0\ref\CarDealer.DataAccess.dll
+C:\CarDealerApp\CarDealer.DataAccess\obj\Debug\net8.0\CarDealer.DataAccess.csproj.AssemblyReference.cache
+C:\CarDealerApp\CarDealer.DataAccess\bin\Debug\net8.0\CarDealer.Model.dll
+C:\CarDealerApp\CarDealer.DataAccess\bin\Debug\net8.0\CarDealer.Model.pdb
+C:\CarDealerApp\CarDealer.DataAccess\obj\Debug\net8.0\CarDeale.F56AE3E2.Up2Date
