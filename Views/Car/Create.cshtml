@@ -1,5 +1,9 @@
 ﻿@model Car
+
+<link rel="stylesheet" href="~/css/SearchOwner.css">
+<script src="~/js/SearchOwnerInput.js" defer></script>
 <form method="post" enctype="multipart/form-data">
+    <input type="hidden" id="OwnerId" name="OwnerId" />
     <div>
         <label asp-for="LicencePlate"></label>
         <input asp-for="LicencePlate" class="form-control" />
@@ -30,10 +34,11 @@
         <input asp-for="ImgUrl" name="file" accept="image/*" class="form-control" type="file" />
         <span asp-validation-for="ImgUrl" class="text-danger"></span>
     </div>
-    <div>        
-        <label asp-for="OwnerId"></label>
-        <input asp-for="OwnerId" class="form-control" />
-        <span asp-validation-for="OwnerId" class="text-danger"></span>
+
+    <div class="form-group">
+        <label for="OwnerId">Owner</label>
+        <input type="text" class="form-control" id="OwnerName" name="OwnerName" placeholder="Write owner name..." autocomplete="off">
+        <div id="floatingSuggestions" class="suggestions-box"></div> <!-- Suggestions here -->
     </div>
 
     <button type="submit" class=" btn btn-primary">Create new Car</button>

@@ -101,11 +101,6 @@ namespace CarDealerApp.Controllers
                     //save image
                     SaveImage(file, car); 
                     
-                    if(car.Owner.Id == 0 || car.Owner.Id == null)
-                    {
-
-                    }
-
                     _context.Cars.Add(car);
                     _context.SaveChanges();
                     return RedirectToAction("Index");
@@ -244,6 +239,24 @@ namespace CarDealerApp.Controllers
             }
 
             return car.ImgUrl;
+        }
+
+
+
+        [HttpGet]
+        public JsonResult GetOwners(string term)
+        {
+            // Filtra los dueños que contengan el término de búsqueda
+            Console.WriteLine("Término de búsqueda: " + term);  // Verifica el término que llega al backend
+
+            var matchedOwners = _context.Owners
+                .Where(o => EF.Functions.Like(o.FullName, $"%{term}%"))
+                .Select(o => new { label = o.FullName, value = o.Id })
+                .ToList();
+
+            Console.WriteLine("Dueños encontrados: " + matchedOwners.Count);  // Verifica cuántos dueños se encontraron
+
+            return Json(matchedOwners);
         }
     }
 }

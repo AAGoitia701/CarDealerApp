@@ -1,9 +1,14 @@
 ﻿@model Car
+
+<link rel="stylesheet" href="~/css/SearchOwner.css">
+<script src="~/js/SearchOwnerInput.js" defer></script>
+
 <h2>Edit Car</h2>
 <div class="col-md-12">
     <img src="@Model.ImgUrl" class="img-fluid rounded-start" alt="Imagen del vehículo">
 </div>
 <form method="post" enctype="multipart/form-data">
+    <input type="hidden" id="OwnerId" name="OwnerId" />
     <input asp-for="CarId" hidden/>
     <input type="hidden" asp-for="ImgUrl" />
     <div>
@@ -36,10 +41,10 @@
         <input asp-for="ImgUrl" name="file" type="file" accept="image/*" class="form-control" />
         <span asp-validation-for="ImgUrl" class="text-danger"></span>
     </div>
-    <div>
-        <label asp-for="OwnerId"></label>
-        <input asp-for="OwnerId" class="form-control" />
-        <span asp-validation-for="OwnerId" class="text-danger"></span>
+    <div class="form-group">
+        <label for="OwnerId">Owner</label>
+        <input type="text" class="form-control" id="OwnerName" name="OwnerName" placeholder="Write owner name..." autocomplete="off">
+        <div id="floatingSuggestions" class="suggestions-box"></div> <!-- Suggestions here -->
     </div>
 
     
@@ -47,3 +52,4 @@
 
     <button asp-controller="Car" asp-action="Index" class="btn btn-secondary">Go Back</button>
 </form>
+
