@@ -1,4 +1,5 @@
-﻿using CarDealerApp.Data;
+﻿using CarDealer.DataAccess.Data.Repository.IRepository;
+using CarDealerApp.Data;
 using CarDealerApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -7,21 +8,21 @@ namespace CarDealerApp.Controllers
 {
     public class OwnerController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IOwnerRepository _ownerContext;
 
-        public OwnerController(ApplicationDbContext context)
+        public OwnerController(IOwnerRepository context)
         {
-            _context = context;
+            _ownerContext = context;
         }
         public IActionResult Index()
         {
-            IEnumerable<Owner> ownerList = _context.Owners.Include(r => r.ListCars).ToList();
+            List<Owner> ownerList = _ownerContext.GetAll(includeProperties:"ListCars").ToList();
             return View(ownerList);
         }
 
         public IActionResult Edit(int id)
         {
-            Owner ownerObj = _context.Owners.Where(r => r.Id == id).FirstOrDefault();
+            Owner ownerObj = _ownerContext.GetOne(r => r.Id == id);
             if (ownerObj == null)
             {
                 return View("NotFound");
@@ -35,8 +36,8 @@ namespace CarDealerApp.Controllers
         {
             if (ModelState.IsValid) 
             {
-                _context.Owners.Update(owner);
-                _context.SaveChanges();
+                _ownerContext.Update(owner);
+                _ownerContext.Save();
                 return RedirectToAction("Index", "Owner");
 
             }
@@ -55,9 +56,9 @@ namespace CarDealerApp.Controllers
         public IActionResult Create(Owner owner)
         {
             if (ModelState.IsValid) 
-            { 
-                _context.Owners.Add(owner);
-                _context.SaveChanges();
+            {
+                _ownerContext.Add(owner);
+                _ownerContext.Save();
                 return RedirectToAction("Index", "Owner");
             }
             else
@@ -69,7 +70,7 @@ namespace CarDealerApp.Controllers
 
         public IActionResult Delete(int id) 
         {
-            Owner owner = _context.Owners.Where(r => r.Id==id).FirstOrDefault();
+            Owner owner = _ownerContext.GetOne(r => r.Id==id);
 
             if (owner == null) 
             {
@@ -85,14 +86,14 @@ namespace CarDealerApp.Controllers
             {
                 return View("NotFound");
             }
-            _context.Remove(owner);
-            _context.SaveChanges();
+            _ownerContext.Delete(owner);
+            _ownerContext.Save();
             return RedirectToAction("Index");
         }
 
         public IActionResult Search(string cardId)
         {
-            Owner owner = _context.Owners.Where(r => r.CardId==cardId).FirstOrDefault();
+            Owner owner = _ownerContext.SearchOwner(cardId);
             if (owner == null) {
                 return View("NotFound");
             }
