@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CarDealer.DataAccess")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+beff32727e27c03ff6b518f85fea60f93a53771b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a57dc7feb396005eba078a21b9553ed2a535f43a")]
 [assembly: System.Reflection.AssemblyProductAttribute("CarDealer.DataAccess")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CarDealer.DataAccess")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

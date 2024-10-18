@@ -54,8 +54,8 @@ namespace CarDealer.DataAccess.Data.Repository
                     query = query.Include(item);
                 }
             }
-
-            return query.FirstOrDefault();
+            // Aplica el filtro antes de llamar a FirstOrDefault
+            return query.Where(filter).FirstOrDefault();
         }
 
         public void Save()

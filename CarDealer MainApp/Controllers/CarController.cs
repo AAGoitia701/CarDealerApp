@@ -1,4 +1,5 @@
-﻿using CarDealerApp.Data;
+﻿using CarDealer.DataAccess.Data.Repository.IRepository;
+using CarDealerApp.Data;
 using CarDealerApp.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -11,24 +12,24 @@ namespace CarDealerApp.Controllers
 {
     public class CarController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ICarRepository _CarContext;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        public CarController(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
+        public CarController(ICarRepository context, IWebHostEnvironment webHostEnvironment)
         {
-            _context = context;   
+            _CarContext = context;   
             _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<Car> carList = _context.Cars.Include(r => r.Owner).ToList();
+            IEnumerable<Car> carList = _CarContext.GetAll(includeProperties:"Owner").ToList();
 
             return View(carList);
         }
 
         public IActionResult Edit(int id) 
         {
-            Car car = _context.Cars.Where(r => r.CarId.Equals(id)).FirstOrDefault();
+            Car car = _CarContext.GetOne(r => r.CarId == id, includeProperties:"Owner");
             Console.WriteLine($"ImgUrl before update: {car.ImgUrl}");
             if (car == null)
             {
@@ -53,10 +54,10 @@ namespace CarDealerApp.Controllers
                     if (file != null)
                     {
                         car.ImgUrl = SaveImage(file, car);
-                    }                   
+                    }
 
-                    _context.Cars.Update(car);
-                    _context.SaveChanges();
+                    _CarContext.Update(car);
+                    _CarContext.Save();
                     return RedirectToAction("Index");
                 }
                 else
@@ -99,10 +100,10 @@ namespace CarDealerApp.Controllers
                     car.Brand = car.Brand.ToUpper();
 
                     //save image
-                    SaveImage(file, car); 
-                    
-                    _context.Cars.Add(car);
-                    _context.SaveChanges();
+                    SaveImage(file, car);
+
+                    _CarContext.Add(car);
+                    _CarContext.Save();
                     return RedirectToAction("Index");
                 }
 
@@ -141,13 +142,13 @@ namespace CarDealerApp.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult Delete(int id)
         {
-            Car car = _context.Cars.Where(r => r.CarId == id).FirstOrDefault();
+            Car car = _CarContext.GetOne(r => r.CarId == id);
             if (car == null)
             {
                 return NotFound();
             }
-            _context.Remove(car);
-            _context.SaveChanges();
+            _CarContext.Delete(car);
+            _CarContext.Save();
             TempData["success"] = "You have deleted the car successfully";
             return RedirectToAction("Index");
         }
@@ -155,46 +156,23 @@ namespace CarDealerApp.Controllers
         [HttpGet]
         public IActionResult Search(string plate, string Brand)
         {
-            try
+            if (string.IsNullOrEmpty(plate) && string.IsNullOrEmpty(Brand))
             {
-                
-                if (string.IsNullOrEmpty(plate) && string.IsNullOrEmpty(Brand))
-                {
-                    return View("NotFound");
-                }
-
-                    if (!(string.IsNullOrEmpty(plate)))
-                    {
-                        plate = plate.ToUpper();
-                        Car car = _context.Cars.Where(r => r.LicencePlate == plate).Include(r => r.Owner).FirstOrDefault();
-                            if(car == null)
-                        {
-                            return View("NotFound");
-                        }           
-                        return View(car);   
-                    }
-
-                    if (!(string.IsNullOrEmpty(Brand)))
-                    {
-                        Brand = Brand.ToUpper();
-                        IEnumerable<Car> car = _context.Cars.Where(r => r.Brand == Brand).Include(r => r.Owner).ToList();
-                        if (car == null )
-                        {
-                            return View("NotFound");
-                        }
-                        return View("SearchBrand", car);
-                    }
-
-
                 return View("NotFound");
+            }
 
-            }
-            catch (Exception err)
+           var car = _CarContext.Search(plate, Brand);
+
+            if (!car.Any())
             {
-                Console.WriteLine(err.Message);
-                return NoContent();
+                return View("NotFound"); // O cualquier otra vista que desees mostrar
             }
-            
+            if (car.Count() == 1)
+            {
+                return View("Search", car.First()); // Si solo hay un coche, pasa el coche a la vista
+            }
+
+            return View("SearchBrand", car); // Si hay varios coches, pasa la lista a la vista;
         }
         /*
         public IActionResult SearchBrand(string brand)
@@ -212,33 +190,9 @@ namespace CarDealerApp.Controllers
         [HttpPost]
         private string SaveImage(IFormFile? file, Car car)
         {
-            string fileName = "";
-            string productPath = "";
-            string wwwRootPath = _webHostEnvironment.WebRootPath;
-            if (file != null)
-            {
-                fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);//creating name for file uploaded
-                productPath = Path.Combine(wwwRootPath, @"images"); //getting the route of the right folder
+            var img = _CarContext.SaveImg(file, car);
 
-                if (!string.IsNullOrEmpty(car.ImgUrl)) //check if there is an imageUrl in the folder for this particular product
-                {
-                    //delete old img
-                    var oldImagePath = Path.Combine(wwwRootPath, car.ImgUrl.TrimStart('/'));
-                    if (System.IO.File.Exists(oldImagePath)) //check if that img exists
-                    {
-                        System.IO.File.Delete(oldImagePath);
-                    }
-                }
-
-                using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
-                {
-                    file.CopyTo(fileStream);
-                }
-
-                car.ImgUrl = @"/images/" + fileName;
-            }
-
-            return car.ImgUrl;
+            return img;
         }
 
 
@@ -249,14 +203,13 @@ namespace CarDealerApp.Controllers
             // Filtra los dueños que contengan el término de búsqueda
             Console.WriteLine("Término de búsqueda: " + term);  // Verifica el término que llega al backend
 
-            var matchedOwners = _context.Owners
-                .Where(o => EF.Functions.Like(o.FullName, $"%{term}%"))
-                .Select(o => new { label = o.FullName, value = o.Id })
-                .ToList();
+            var matchedOwners = _CarContext.GetOwners(term); 
+            Console.WriteLine(matchedOwners.Count());  // Verifica cuántos dueños se encontraron
 
-            Console.WriteLine("Dueños encontrados: " + matchedOwners.Count);  // Verifica cuántos dueños se encontraron
+            // Retorna como una lista de DTOs si es necesario
+            var ownerDtos = matchedOwners.Select(o => new { label = o.FullName, value = o.Id }).ToList();
 
-            return Json(matchedOwners);
+            return Json(ownerDtos);
         }
     }
 }
