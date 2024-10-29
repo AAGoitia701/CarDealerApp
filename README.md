@@ -6,11 +6,8 @@ Welcome to the Car Dealer App! This application allows users to browse, manage, 
 
 - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [Installation](#installation)
 - [Usage](#usage)
-- [Contributing](#contributing)
 - [License](#license)
-- [Contact](#contact)
 
 ## Features
 
@@ -33,5 +30,10 @@ After starting the application, you can browse the available cars.
 Use the search and filter features to find specific vehicles.
 Register or log in to save your favorite cars.
 Follow the prompts to purchase a car.
+
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+
 
 Thank you for checking out the Car Dealer App!
